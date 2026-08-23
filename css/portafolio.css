@@ -101,12 +101,13 @@
   position: relative;
   top: -4px;
   font-size: 1rem;
+  color: #274dd8;
   text-decoration-color: #274dd8;
-  color: inherit;
 }
 
 .pf-item-link:hover {
-  text-decoration-color: #000;
+  color: #1a35a0;
+  text-decoration-color: #1a35a0;
 }
 
 .pf-item-link-icon {

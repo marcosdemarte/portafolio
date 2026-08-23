@@ -31,9 +31,18 @@ const nextConfig: NextConfig = {
 
 ## Instalacion
 
+Este paquete **no se publica en npm**, se instala directo desde el repo de
+GitHub (privado) fijando un tag de version:
+
 ```bash
-npm install @marcosdemarte/portafolio
+npm install github:marcosdemarte/portafolio#v1.0.0
 ```
+
+Necesitas acceso de lectura al repo (`gh auth login` o credenciales git
+configuradas) para poder instalarlo, tanto en tu maquina como en cualquier
+entorno de build/deploy (ej. Vercel necesita un GitHub token con acceso al
+repo configurado como variable de entorno para poder instalar esta
+dependencia durante el build).
 
 ## 1. CSS
 
@@ -100,19 +109,24 @@ Props (todas opcionales):
 
 ## Actualizar
 
+Cambia el tag en el `package.json` del proyecto consumidor y reinstala:
+
+```json
+"@marcosdemarte/portafolio": "github:marcosdemarte/portafolio#v1.1.0"
+```
+
 ```bash
-npm install @marcosdemarte/portafolio@latest
+npm install
 ```
 
 ## Publicar una nueva version (mantenedor)
 
 ```bash
-npm version patch   # o minor/major
-npm publish --access public
+git commit -am "..."
+git tag -a v1.1.0 -m "v1.1.0"
 git push && git push --tags
 ```
 
-(`--access public`: los paquetes con scope, como `@marcosdemarte/...`, son
-privados por defecto en npm y requieren un plan pago para publicarse
-privados. Igual que `@marcosdemarte/lista-de-tareas`, este paquete se
-publica publico en el registry aunque el repo de GitHub sea privado.)
+Despues, actualiza el tag en el `package.json` de cada proyecto consumidor
+(powerbits.net y marcosbrandolin.vercel.app) y corre `npm install` en cada
+uno.
