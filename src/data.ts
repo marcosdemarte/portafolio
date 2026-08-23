@@ -136,7 +136,7 @@ export function getPortafolioProjects(
       imagenes: {
         carpeta: "juego-jurasico",
         portada: "juego-jurasico1.jpg",
-        galeria: ["juego-jurasico1.jpg", "powerbit1.jpg"],
+        galeria: ["juego-jurasico1.jpg"],
       },
       fechaIgnaguracion: "17/12/2025",
       version: "1.2",

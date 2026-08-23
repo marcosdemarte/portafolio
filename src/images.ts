@@ -12,10 +12,7 @@ import img11 from "../images/elcazadorgym/elcazadorgym3.jpg";
 import img12 from "../images/elcazadorgym/elcazadorgym4.jpg";
 import img13 from "../images/elcazadorgym/elcazadorgym5.jpg";
 import img14 from "../images/elcazadorgym/elcazadorgym6.jpg";
-import img15 from "../images/juego-jurasico/1.png";
-import img16 from "../images/juego-jurasico/2.png";
 import img17 from "../images/juego-jurasico/juego-jurasico1.jpg";
-import img18 from "../images/juego-jurasico/powerbit1.jpg";
 import img19 from "../images/marcos-brandolin-portafolio/marcosbrandolin-portafolio.jpg";
 import img20 from "../images/picnic/picnic.jpg";
 import img21 from "../images/powerbit/powerbit1.jpg";
@@ -59,10 +56,7 @@ const rawImages: Record<string, unknown> = {
   "elcazadorgym/elcazadorgym4.jpg": img12,
   "elcazadorgym/elcazadorgym5.jpg": img13,
   "elcazadorgym/elcazadorgym6.jpg": img14,
-  "juego-jurasico/1.png": img15,
-  "juego-jurasico/2.png": img16,
   "juego-jurasico/juego-jurasico1.jpg": img17,
-  "juego-jurasico/powerbit1.jpg": img18,
   "marcos-brandolin-portafolio/marcosbrandolin-portafolio.jpg": img19,
   "picnic/picnic.jpg": img20,
   "powerbit/powerbit1.jpg": img21,

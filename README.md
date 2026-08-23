@@ -13,57 +13,110 @@ videos de YouTube) para reutilizar entre sitios Next.js. Pensado para
 - Los **textos** se resuelven con `next-intl` (`useTranslations`), con el
   namespace configurable para no chocar con las claves que ya tenga cada
   proyecto.
+- Este paquete **no se publica en npm**: se instala directo desde este repo
+  de GitHub (publico) fijando un tag de version.
 
-## Requisitos del proyecto consumidor
+---
 
-- Next.js (App Router) >= 14, React >= 18, `next-intl` >= 3.
-- `transpilePackages: ["@marcosdemarte/portafolio"]` en `next.config`
-  (el paquete se distribuye como fuente TypeScript, no pre-compilado; este
-  flag tambien es lo que le dice a Next que procese los imports de imagen
-  del paquete, igual que si fueran parte de tu propio `src`).
+## Instalar en un proyecto nuevo
 
-```ts
-// next.config.ts
-const nextConfig: NextConfig = {
-  transpilePackages: ["@marcosdemarte/portafolio"],
-};
-```
+1. **Instalar el paquete**, fijando el ultimo tag (ver [releases del
+   repo](https://github.com/marcosdemarte/portafolio/tags)):
 
-## Instalacion
+   ```bash
+   npm install github:marcosdemarte/portafolio#v1.0.4
+   ```
 
-Este paquete **no se publica en npm**, se instala directo desde el repo de
-GitHub (publico) fijando un tag de version:
+2. **Habilitar `transpilePackages`** en `next.config` (el paquete se
+   distribuye como fuente TypeScript sin compilar; esto tambien hace que
+   Next procese los imports de imagen del paquete):
 
-```bash
-npm install github:marcosdemarte/portafolio#v1.0.1
-```
+   ```ts
+   // next.config.ts
+   const nextConfig: NextConfig = {
+     transpilePackages: ["@marcosdemarte/portafolio"],
+   };
+   ```
 
-Al ser un repo publico, no hace falta ningun token ni configuracion
-especial para instalarlo, ni en tu maquina ni en el build de Vercel u otro
-entorno de deploy.
+3. **Copiar el CSS default** de este repo (`css/portafolio.css`) a tu
+   proyecto (ej. `src/app/portafolio.css`) e importalo una vez, junto con
+   tus otros globales:
 
-## 1. CSS
+   ```ts
+   import "./portafolio.css";
+   ```
 
-Copia `css/portafolio.css` de este repo a tu proyecto (ej.
-`src/app/portafolio.css`) e importalo una vez donde importes tus otros
-globales:
+4. **Agregar las traducciones** que el componente necesita, en el
+   namespace de next-intl que prefieras (ver forma exacta en
+   [Traducciones](#traducciones) mas abajo).
 
-```ts
-import "./portafolio.css";
-```
+5. **Usar el componente**:
 
-Este CSS trae el look default funcionando, usando solo clases `pf-*` (no
-depende de Tailwind ni pisa clases tuyas como `.margen1` o `.titulo`).
+   ```tsx
+   import { Portafolio } from "@marcosdemarte/portafolio";
 
-Para usar **otro** CSS (mismo set de clases `pf-*`, look distinto), pasale
-la ruta al componente con `cssHref`. Se inyecta ademas del CSS default, asi
-que solo necesitas sobreescribir lo que quieras cambiar:
+   <Portafolio namespace="portafolio" />;
+   ```
 
-```tsx
-<Portafolio cssHref="/portafolio-tema-oscuro.css" />
-```
+Al ser un repo publico, el paso 1 no necesita ningun token ni configuracion
+especial, ni en tu maquina ni en el build de Vercel u otro entorno de
+deploy.
 
-## 2. Traducciones
+## Actualizar el paquete en un proyecto que ya lo usa
+
+1. Mira que tags existen: https://github.com/marcosdemarte/portafolio/tags
+2. Cambia el tag en el `package.json` del proyecto:
+
+   ```json
+   "@marcosdemarte/portafolio": "github:marcosdemarte/portafolio#v1.1.0"
+   ```
+
+3. Reinstala:
+
+   ```bash
+   npm install
+   ```
+
+   Si el proyecto no detecta el cambio (npm a veces cachea el contenido de
+   una dependencia git), borra la carpeta antes de instalar:
+
+   ```bash
+   rm -rf node_modules/@marcosdemarte/portafolio
+   npm install
+   ```
+
+4. **Revisa el CHANGELOG del repo** (o el mensaje del commit/tag) por si la
+   nueva version toco `css/portafolio.css` — en ese caso hay que volver a
+   copiar el archivo actualizado a tu proyecto (paso 3 de instalacion), ya
+   que el CSS no se actualiza solo al hacer `npm install` (no vive en el
+   paquete).
+5. Si estabas en desarrollo (`npm run dev`), reiniciá el servidor: Next no
+   siempre re-detecta cambios dentro de una dependencia reinstalada en
+   `node_modules` en caliente.
+
+## Publicar un cambio del paquete (mantenedor)
+
+1. Hacé los cambios en `src/` y/o `css/portafolio.css` dentro de este repo
+   (`X:\Servidor\PortafolioPackage`).
+2. Commiteá y taguea una nueva version (semver, sin saltar de mas):
+
+   ```bash
+   git add -A
+   git commit -m "..."
+   git tag -a v1.1.0 -m "v1.1.0: descripcion corta del cambio"
+   git push
+   git push origin v1.1.0
+   ```
+
+3. En **cada proyecto consumidor** (powerbits.net y
+   marcosbrandolin.vercel.app), seguí los pasos de
+   [Actualizar el paquete](#actualizar-el-paquete-en-un-proyecto-que-ya-lo-usa)
+   para apuntar al tag nuevo — actualizar el repo del paquete solo no alcanza,
+   cada proyecto tiene que reinstalar explicitamente.
+
+---
+
+## Traducciones
 
 El componente espera un namespace de next-intl con esta forma (podes
 llamarlo como quieras y pasarselo por prop `namespace`, incluso anidado
@@ -88,15 +141,26 @@ tipo `"home.portfolio"`):
 }
 ```
 
-## 3. Uso
+## CSS: tematizar
+
+Este CSS trae el look default funcionando, usando solo clases `pf-*` (no
+depende de Tailwind ni pisa clases tuyas como `.margen1` o `.titulo`).
+Incluye tema oscuro via la convencion `.dark <selector>` (la misma que usa
+`next-themes` con `attribute="class"` en powerbits.net): si tu proyecto
+nunca agrega una clase `.dark` en un ancestro, el componente se queda en
+tema claro siempre.
+
+Para usar **otro** CSS (mismo set de clases `pf-*`, look distinto), pasale
+la ruta al componente con `cssHref`. Se inyecta ademas del CSS default, asi
+que solo necesitas sobreescribir lo que quieras cambiar:
 
 ```tsx
-import { Portafolio } from "@marcosdemarte/portafolio";
-
-<Portafolio namespace="portafolio" />;
+<Portafolio cssHref="/portafolio-tema-oscuro.css" />
 ```
 
-Props (todas opcionales):
+## Props
+
+Todas opcionales:
 
 | Prop | Default | Descripcion |
 | --- | --- | --- |
@@ -104,27 +168,3 @@ Props (todas opcionales):
 | `cssHref` | - | Hoja de estilos alternativa (mismas clases `pf-*`) |
 | `sectionId` | `"portafolio"` | id del `<section>` para anclas de navegacion |
 | `excludeKeys` | `["2"]` | Keys del catalogo interno a excluir (hay un duplicado interno con key `"2"`) |
-
-## Actualizar
-
-Cambia el tag en el `package.json` del proyecto consumidor y reinstala:
-
-```json
-"@marcosdemarte/portafolio": "github:marcosdemarte/portafolio#v1.1.0"
-```
-
-```bash
-npm install
-```
-
-## Publicar una nueva version (mantenedor)
-
-```bash
-git commit -am "..."
-git tag -a v1.1.0 -m "v1.1.0"
-git push && git push --tags
-```
-
-Despues, actualiza el tag en el `package.json` de cada proyecto consumidor
-(powerbits.net y marcosbrandolin.vercel.app) y corre `npm install` en cada
-uno.
