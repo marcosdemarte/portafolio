@@ -32,17 +32,15 @@ const nextConfig: NextConfig = {
 ## Instalacion
 
 Este paquete **no se publica en npm**, se instala directo desde el repo de
-GitHub (privado) fijando un tag de version:
+GitHub (publico) fijando un tag de version:
 
 ```bash
-npm install github:marcosdemarte/portafolio#v1.0.0
+npm install github:marcosdemarte/portafolio#v1.0.1
 ```
 
-Necesitas acceso de lectura al repo (`gh auth login` o credenciales git
-configuradas) para poder instalarlo, tanto en tu maquina como en cualquier
-entorno de build/deploy (ej. Vercel necesita un GitHub token con acceso al
-repo configurado como variable de entorno para poder instalar esta
-dependencia durante el build).
+Al ser un repo publico, no hace falta ningun token ni configuracion
+especial para instalarlo, ni en tu maquina ni en el build de Vercel u otro
+entorno de deploy.
 
 ## 1. CSS
 
