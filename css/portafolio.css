@@ -16,9 +16,17 @@
  */
 
 .pf-section {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 1rem;
   background-color: #fff;
   color: #111;
+}
+
+.dark .pf-section {
+  background-color: #050610;
+  color: #9ca3af;
 }
 
 @media (min-width: 1024px) {
@@ -33,6 +41,11 @@
   font-weight: 700;
   margin: 0 0 1.5rem;
   line-height: 1.2;
+  color: #111827;
+}
+
+.dark .pf-title {
+  color: #fff;
 }
 
 @media (min-width: 768px) {
@@ -55,6 +68,10 @@
   padding-bottom: 2rem;
   text-align: center;
   border-bottom: 1px solid #a0a0a0;
+}
+
+.dark .pf-item {
+  border-bottom-color: #27272a;
 }
 
 .pf-item:last-child {
@@ -89,6 +106,11 @@
   font-size: 1.25rem;
   font-weight: 700;
   margin: 0 0 0.5rem;
+  color: #111827;
+}
+
+.dark .pf-item-title {
+  color: #fff;
 }
 
 @media (min-width: 1024px) {
@@ -108,6 +130,16 @@
 .pf-item-link:hover {
   color: #1a35a0;
   text-decoration-color: #1a35a0;
+}
+
+.dark .pf-item-link {
+  color: #6d8bf5;
+  text-decoration-color: #6d8bf5;
+}
+
+.dark .pf-item-link:hover {
+  color: #98aef8;
+  text-decoration-color: #98aef8;
 }
 
 .pf-item-link-icon {
@@ -136,6 +168,11 @@
 .pf-item-meta-label {
   font-weight: 700;
   display: block;
+  color: #111827;
+}
+
+.dark .pf-item-meta-label {
+  color: #fff;
 }
 
 @media (min-width: 768px) {
