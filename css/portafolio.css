@@ -61,6 +61,14 @@
   border-bottom: none;
 }
 
+.pf-item-text {
+  order: 2;
+}
+
+.pf-item-media {
+  order: 1;
+}
+
 @media (min-width: 1024px) {
   .pf-item {
     grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -75,14 +83,6 @@
     grid-column: span 6 / span 6;
     order: 2;
   }
-}
-
-.pf-item-text {
-  order: 2;
-}
-
-.pf-item-media {
-  order: 1;
 }
 
 .pf-item-title {
