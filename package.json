@@ -1,0 +1,36 @@
+{
+  "name": "@marcosdemarte/portafolio",
+  "version": "1.0.0",
+  "description": "Componente React de portafolio (proyectos + galeria con lightbox) reutilizable entre sitios Next.js, con imagenes incluidas e i18n via next-intl.",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "files": [
+    "src",
+    "images",
+    "README.md"
+  ],
+  "author": "Marcos Demarte",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcosdemarte/portafolio.git"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18",
+    "next": ">=14",
+    "next-intl": ">=3"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.2 || ^7.0.0",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2 || ^7.0.0",
+    "@fortawesome/react-fontawesome": "^0.2.0 || ^3.0.0",
+    "html-react-parser": "^5.2.11",
+    "react-youtube": "^10.1.0",
+    "yet-another-react-lightbox": "^3.28.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "typescript": "^5"
+  }
+}
