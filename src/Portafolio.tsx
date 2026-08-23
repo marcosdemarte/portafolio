@@ -93,10 +93,11 @@ export const Portafolio = ({
   return (
     <section className="pf-section" id={sectionId}>
       {cssHref && <link rel="stylesheet" href={cssHref} />}
-      <h1 className="pf-title">{t("title")}</h1>
+      <div className="pf-container">
+        <h1 className="pf-title">{t("title")}</h1>
 
-      <div className="pf-list">
-        {Object.entries(portafolio)
+        <div className="pf-list">
+          {Object.entries(portafolio)
           .reverse()
           .filter(([key]) => !excludeKeys.includes(key))
           .map(([key, item]) => (
@@ -155,6 +156,7 @@ export const Portafolio = ({
               </div>
             </div>
           ))}
+        </div>
       </div>
       <Lightbox
         open={open}

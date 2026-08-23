@@ -16,10 +16,8 @@
  */
 
 .pf-section {
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   background-color: #fff;
   color: #111;
 }
@@ -31,8 +29,17 @@
 
 @media (min-width: 1024px) {
   .pf-section {
-    padding: 2.25rem;
+    padding-top: 2.25rem;
+    padding-bottom: 2.25rem;
   }
+}
+
+.pf-container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .pf-title {
