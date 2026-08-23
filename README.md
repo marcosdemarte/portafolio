@@ -4,7 +4,10 @@ Componente de portafolio (grilla de proyectos + galeria con lightbox y
 videos de YouTube) para reutilizar entre sitios Next.js. Pensado para
 `powerbits.net` y `marcosbrandolin.vercel.app`.
 
-- El componente y las **imagenes** viven en el paquete.
+- El componente y las **imagenes** viven en el paquete: las imagenes se
+  importan como assets estaticos (`import foo from "./img.jpg"`), asi que
+  Next.js las procesa, hashea y sirve el mismo, sin copiarlas a `public/`
+  ni necesitar una ruta propia.
 - El **CSS no viaja en el paquete**: se copia (`css/portafolio.css`) dentro
   de cada proyecto consumidor, que lo importa como un CSS mas propio.
 - Los **textos** se resuelven con `next-intl` (`useTranslations`), con el
@@ -15,17 +18,14 @@ videos de YouTube) para reutilizar entre sitios Next.js. Pensado para
 
 - Next.js (App Router) >= 14, React >= 18, `next-intl` >= 3.
 - `transpilePackages: ["@marcosdemarte/portafolio"]` en `next.config`
-  (el paquete se distribuye como fuente TypeScript, no pre-compilado).
+  (el paquete se distribuye como fuente TypeScript, no pre-compilado; este
+  flag tambien es lo que le dice a Next que procese los imports de imagen
+  del paquete, igual que si fueran parte de tu propio `src`).
 
 ```ts
 // next.config.ts
 const nextConfig: NextConfig = {
   transpilePackages: ["@marcosdemarte/portafolio"],
-  // en deploys serverless (Vercel), asegura que las imagenes empaquetadas
-  // se incluyan en el bundle del route handler que las sirve:
-  outputFileTracingIncludes: {
-    "/imagenes/portafolio/**": ["./node_modules/@marcosdemarte/portafolio/images/**"],
-  },
 };
 ```
 
@@ -35,36 +35,7 @@ const nextConfig: NextConfig = {
 npm install @marcosdemarte/portafolio
 ```
 
-## 1. Ruta que sirve las imagenes empaquetadas
-
-Las imagenes no se copian a `public/`: se leen directo desde el paquete via
-un Route Handler chico que vos agregas en tu proyecto (fuera de `[locale]`,
-para que el middleware de next-intl no la intercepte):
-
-```ts
-// src/app/imagenes/portafolio/[...path]/route.ts
-import { readPortafolioImage } from "@marcosdemarte/portafolio";
-
-export const runtime = "nodejs";
-
-export async function GET(
-  _req: Request,
-  { params }: { params: Promise<{ path: string[] }> },
-) {
-  const { path: segments } = await params;
-  const image = await readPortafolioImage(segments);
-  if (!image) return new Response("Not found", { status: 404 });
-
-  return new Response(image.buffer, {
-    headers: {
-      "Content-Type": image.contentType,
-      "Cache-Control": "public, max-age=31536000, immutable",
-    },
-  });
-}
-```
-
-## 2. CSS
+## 1. CSS
 
 Copia `css/portafolio.css` de este repo a tu proyecto (ej.
 `src/app/portafolio.css`) e importalo una vez donde importes tus otros
@@ -85,7 +56,7 @@ que solo necesitas sobreescribir lo que quieras cambiar:
 <Portafolio cssHref="/portafolio-tema-oscuro.css" />
 ```
 
-## 3. Traducciones
+## 2. Traducciones
 
 El componente espera un namespace de next-intl con esta forma (podes
 llamarlo como quieras y pasarselo por prop `namespace`, incluso anidado
@@ -110,7 +81,7 @@ tipo `"home.portfolio"`):
 }
 ```
 
-## 4. Uso
+## 3. Uso
 
 ```tsx
 import { Portafolio } from "@marcosdemarte/portafolio";
@@ -123,7 +94,6 @@ Props (todas opcionales):
 | Prop | Default | Descripcion |
 | --- | --- | --- |
 | `namespace` | `"portafolio"` | Namespace de next-intl con las claves del portafolio |
-| `imageBasePath` | `"/imagenes/portafolio"` | Prefijo del route handler que sirve las imagenes |
 | `cssHref` | - | Hoja de estilos alternativa (mismas clases `pf-*`) |
 | `sectionId` | `"portafolio"` | id del `<section>` para anclas de navegacion |
 | `excludeKeys` | `["2"]` | Keys del catalogo interno a excluir (hay un duplicado interno con key `"2"`) |

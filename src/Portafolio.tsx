@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslations } from "next-intl";
 
 import { getPortafolioProjects } from "./data";
+import { getPortafolioImageSrc } from "./images";
 
 export interface PortafolioProps {
   /**
@@ -17,12 +18,6 @@ export interface PortafolioProps {
    * ej. "home.portfolio". Default: "portafolio".
    */
   namespace?: string;
-  /**
-   * Prefijo de URL desde donde se sirven las imagenes empaquetadas.
-   * Debe apuntar a un Route Handler que use `readPortafolioImage`
-   * (ver README). Default: "/imagenes/portafolio".
-   */
-  imageBasePath?: string;
   /**
    * Ruta a una hoja de estilos alternativa que reutiliza las mismas
    * clases `pf-*` que trae el CSS default. Si se pasa, se inyecta un
@@ -37,7 +32,6 @@ export interface PortafolioProps {
 
 export const Portafolio = ({
   namespace = "portafolio",
-  imageBasePath = "/imagenes/portafolio",
   cssHref,
   sectionId = "portafolio",
   excludeKeys = ["2"],
@@ -78,7 +72,7 @@ export const Portafolio = ({
     const item = portafolio[key];
 
     const imagenesMapped = item.imagenes.galeria.map((imagen: string) => ({
-      src: `${imageBasePath}/${item.imagenes.carpeta}/${imagen}`,
+      src: getPortafolioImageSrc(item.imagenes.carpeta, imagen),
       type: "image" as const,
     }));
 
@@ -148,7 +142,10 @@ export const Portafolio = ({
               </div>
               <div className="pf-item-media">
                 <img
-                  src={`${imageBasePath}/${item.imagenes.carpeta}/${item.imagenes.portada}`}
+                  src={getPortafolioImageSrc(
+                    item.imagenes.carpeta,
+                    item.imagenes.portada,
+                  )}
                   alt={item.imagenes.galeria[0]}
                   className="pf-item-image"
                   onClick={() => {
