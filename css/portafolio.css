@@ -16,8 +16,6 @@
  */
 
 .pf-section {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
   background-color: #fff;
   color: #111;
 }
@@ -27,19 +25,11 @@
   color: #9ca3af;
 }
 
-@media (min-width: 1024px) {
-  .pf-section {
-    padding-top: 2.25rem;
-    padding-bottom: 2.25rem;
-  }
-}
-
 .pf-container {
-  max-width: 1280px;
+  max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 2.25rem;
 }
 
 .pf-title {
