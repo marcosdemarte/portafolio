@@ -60,15 +60,17 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.75rem;
-  padding: 0.5rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding: 4rem 0;
   text-align: center;
   border-bottom: 1px solid #a0a0a0;
 }
 
 .dark .pf-item {
   border-bottom-color: #27272a;
+}
+
+.pf-item:first-child {
+  padding-top: 0;
 }
 
 .pf-item:last-child {
@@ -86,8 +88,7 @@
 @media (min-width: 1024px) {
   .pf-item {
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding: 5rem;
   }
   .pf-item-text {
     grid-column: span 6 / span 6;
