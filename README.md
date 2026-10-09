@@ -24,7 +24,7 @@ videos de YouTube) para reutilizar entre sitios Next.js. Pensado para
    repo](https://github.com/marcosdemarte/portafolio/tags)):
 
    ```bash
-   npm install github:marcosdemarte/portafolio#v1.0.4
+   npm install github:marcosdemarte/portafolio
    ```
 
 2. **Habilitar `transpilePackages`** en `next.config` (el paquete se
@@ -101,11 +101,10 @@ deploy.
 2. Commiteá y taguea una nueva version (semver, sin saltar de mas):
 
    ```bash
-   git add -A
-   git commit -m "..."
+   git add .
    git tag -a v1.1.0 -m "v1.1.0: descripcion corta del cambio"
+   git push origin --tags
    git push
-   git push origin v1.1.0
    ```
 
 3. En **cada proyecto consumidor** (powerbits.net y

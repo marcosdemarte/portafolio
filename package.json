@@ -6,9 +6,14 @@
   "types": "src/index.ts",
   "files": [
     "src",
+    "css",
     "images",
     "README.md"
   ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./css/*": "./css/*"
+  },
   "author": "Marcos Demarte",
   "license": "MIT",
   "repository": {
