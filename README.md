@@ -74,7 +74,7 @@ deploy.
 3. Reinstala:
 
    ```bash
-   npm install
+   npm update @marcosdemarte/portafolio
    ```
 
    Si el proyecto no detecta el cambio (npm a veces cachea el contenido de
@@ -130,7 +130,13 @@ tipo `"home.portfolio"`):
   "projects": {
     "tiendabrando": { "title": "...", "description": "..." },
     "powerbit": { "title": "...", "description": "..." },
-    "elcazadorgym": { "title": "...", "description": "...", "subtitle": "...", "dni": "DNI", "password": "Password" },
+    "elcazadorgym": {
+      "title": "...",
+      "description": "...",
+      "subtitle": "...",
+      "dni": "DNI",
+      "password": "Password"
+    },
     "juegounirverso": { "title": "...", "description": "..." },
     "bicicletaselectricas": { "title": "...", "description": "..." },
     "marcosbrandolinportafolio": { "title": "...", "description": "..." },
@@ -162,9 +168,9 @@ que solo necesitas sobreescribir lo que quieras cambiar:
 
 Todas opcionales:
 
-| Prop | Default | Descripcion |
-| --- | --- | --- |
-| `namespace` | `"portafolio"` | Namespace de next-intl con las claves del portafolio |
-| `cssHref` | - | Hoja de estilos alternativa (mismas clases `pf-*`) |
-| `sectionId` | `"portafolio"` | id del `<section>` para anclas de navegacion |
-| `excludeKeys` | `["2"]` | Keys del catalogo interno a excluir (hay un duplicado interno con key `"2"`) |
+| Prop          | Default        | Descripcion                                                                  |
+| ------------- | -------------- | ---------------------------------------------------------------------------- |
+| `namespace`   | `"portafolio"` | Namespace de next-intl con las claves del portafolio                         |
+| `cssHref`     | -              | Hoja de estilos alternativa (mismas clases `pf-*`)                           |
+| `sectionId`   | `"portafolio"` | id del `<section>` para anclas de navegacion                                 |
+| `excludeKeys` | `["2"]`        | Keys del catalogo interno a excluir (hay un duplicado interno con key `"2"`) |
