@@ -102,9 +102,10 @@ deploy.
 
    ```bash
    git add .
-   git tag -a v1.1.0 -m "v1.1.0: descripcion corta del cambio"
+   git commit -m ""
+   git push origin master
+   git tag -a v1.1.0 -m " descripcion corta del cambio"
    git push origin --tags
-   git push
    ```
 
 3. En **cada proyecto consumidor** (powerbits.net y
