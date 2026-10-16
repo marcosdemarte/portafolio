@@ -6,18 +6,13 @@ import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useTranslations } from "next-intl";
 
 import { getPortafolioProjects } from "./data";
 import { getPortafolioImageSrc } from "./images";
 
 export interface PortafolioProps {
-  /**
-   * Namespace de next-intl donde viven las claves del portafolio
-   * (title, date, version, projects.*). Acepta namespaces anidados,
-   * ej. "home.portfolio". Default: "portafolio".
-   */
-  namespace?: string;
+  /** Idioma interno del portafolio: "es" o "en". Default: "es". */
+  lenguaje?: "es" | "en";
   /**
    * Ruta a una hoja de estilos alternativa que reutiliza las mismas
    * clases `pf-*` que trae el CSS default. Si se pasa, se inyecta un
@@ -31,12 +26,27 @@ export interface PortafolioProps {
 }
 
 export const Portafolio = ({
-  namespace = "portafolio",
+  lenguaje = "es",
   cssHref,
   sectionId = "portafolio",
   excludeKeys = ["2"],
 }: PortafolioProps) => {
-  const t = useTranslations(namespace);
+  // Función traductora interna basada en la prop 'lenguaje'
+  const t = (key: string) => {
+    const staticTexts: Record<string, Record<string, string>> = {
+      es: { title: "Portafolio", date: "Fecha", version: "Versión" },
+      en: { title: "Portfolio", date: "Date", version: "Version" },
+    };
+
+    if (staticTexts[lenguaje]?.[key]) {
+      return staticTexts[lenguaje][key];
+    }
+
+    const parts = key.split(".");
+    return parts[parts.length - 1];
+  };
+
+  const portafolio = getPortafolioProjects(t);
   const [open, setOpen] = useState(false);
   const [galeria, setGaleria] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -65,8 +75,6 @@ export const Portafolio = ({
       fs: 1,
     },
   };
-
-  const portafolio = getPortafolioProjects(t);
 
   const selectedGaleria = (key: string) => {
     const item = portafolio[key];
@@ -98,64 +106,64 @@ export const Portafolio = ({
 
         <div className="pf-list">
           {Object.entries(portafolio)
-          .reverse()
-          .filter(([key]) => !excludeKeys.includes(key))
-          .map(([key, item]) => (
-            <div key={key} className="pf-item">
-              <div className="pf-item-text">
-                <h2 className="pf-item-title">
-                  {item.titulo}
-                  <a href={item.url} target="_blank" className="pf-item-link">
-                    <FontAwesomeIcon
-                      icon={faArrowUpRightFromSquare}
-                      size="lg"
-                      className="pf-item-link-icon"
-                    />
-                  </a>
-                </h2>
-                <div
-                  className="pf-item-description"
-                  dangerouslySetInnerHTML={{ __html: item.descripcion }}
-                />
+            .reverse()
+            .filter(([key]) => !excludeKeys.includes(key))
+            .map(([key, item]) => (
+              <div key={key} className="pf-item">
+                <div className="pf-item-text">
+                  <h2 className="pf-item-title">
+                    {item.titulo}
+                    <a href={item.url} target="_blank" className="pf-item-link">
+                      <FontAwesomeIcon
+                        icon={faArrowUpRightFromSquare}
+                        size="lg"
+                        className="pf-item-link-icon"
+                      />
+                    </a>
+                  </h2>
+                  <div
+                    className="pf-item-description"
+                    dangerouslySetInnerHTML={{ __html: item.descripcion }}
+                  />
 
-                {item.demo && (
-                  <div className="pf-item-demo">
-                    {item.demo.url && (
-                      <a href={item.demo.url} target="_blank">
-                        {item.demo.url}
-                      </a>
-                    )}
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: item.demo.descripcion,
-                      }}
-                    />
-                  </div>
-                )}
-                <p className="pf-item-meta pf-item-meta--first">
-                  <span className="pf-item-meta-label">{t("date")}:</span>{" "}
-                  <span>{item.fechaIgnaguracion}</span>
-                </p>
-                <p className="pf-item-meta">
-                  <span className="pf-item-meta-label">{t("version")}:</span>{" "}
-                  {item.version}
-                </p>
-              </div>
-              <div className="pf-item-media">
-                <img
-                  src={getPortafolioImageSrc(
-                    item.imagenes.carpeta,
-                    item.imagenes.portada,
+                  {item.demo && (
+                    <div className="pf-item-demo">
+                      {item.demo.url && (
+                        <a href={item.demo.url} target="_blank">
+                          {item.demo.url}
+                        </a>
+                      )}
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: item.demo.descripcion,
+                        }}
+                      />
+                    </div>
                   )}
-                  alt={item.imagenes.galeria[0]}
-                  className="pf-item-image"
-                  onClick={() => {
-                    selectedGaleria(key);
-                  }}
-                />
+                  <p className="pf-item-meta pf-item-meta--first">
+                    <span className="pf-item-meta-label">{t("date")}:</span>{" "}
+                    <span>{item.fechaIgnaguracion}</span>
+                  </p>
+                  <p className="pf-item-meta">
+                    <span className="pf-item-meta-label">{t("version")}:</span>{" "}
+                    {item.version}
+                  </p>
+                </div>
+                <div className="pf-item-media">
+                  <img
+                    src={getPortafolioImageSrc(
+                      item.imagenes.carpeta,
+                      item.imagenes.portada,
+                    )}
+                    alt={item.imagenes.galeria[0]}
+                    className="pf-item-image"
+                    onClick={() => {
+                      selectedGaleria(key);
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
       <Lightbox
@@ -180,8 +188,7 @@ export const Portafolio = ({
                 esVideo === "video"
                   ? "pf-lightbox-counter pf-lightbox-counter--video"
                   : "pf-lightbox-counter"
-              }
-            >
+              }>
               {currentIndex + 1} / {galeria.length}
             </div>,
             "close",
@@ -197,16 +204,14 @@ export const Portafolio = ({
                 esVideo === "video"
                   ? "yarl__button pf-lightbox-close pf-lightbox-close--video"
                   : "yarl__button pf-lightbox-close"
-              }
-            >
+              }>
               <svg
                 viewBox="0 0 24 24"
                 width="24"
                 height="24"
                 stroke="currentColor"
                 strokeWidth="2"
-                fill="none"
-              >
+                fill="none">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
