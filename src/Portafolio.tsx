@@ -1,27 +1,20 @@
 "use client";
 import YouTube, { YouTubeProps } from "react-youtube";
-
 import { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { getPortafolioProjects } from "./data";
+import { getPortafolioProjects, Idioma } from "./data";
 import { getPortafolioImageSrc } from "./images";
+import locales from "./locales.json";
 
 export interface PortafolioProps {
-  /** Idioma interno del portafolio: "es" o "en". Default: "es". */
-  lenguaje?: "es" | "en";
-  /**
-   * Ruta a una hoja de estilos alternativa que reutiliza las mismas
-   * clases `pf-*` que trae el CSS default. Si se pasa, se inyecta un
-   * <link> adicional (no reemplaza el CSS default del proyecto).
-   */
+  /** Idioma del portafolio: "es" | "en". Default: "es" */
+  lenguaje?: Idioma;
   cssHref?: string;
-  /** id del <section>, para anclas de navegacion. Default: "portafolio". */
   sectionId?: string;
-  /** Keys del catalogo interno a excluir (ej. duplicados). Default: ["2"]. */
   excludeKeys?: string[];
 }
 
@@ -31,22 +24,9 @@ export const Portafolio = ({
   sectionId = "portafolio",
   excludeKeys = ["2"],
 }: PortafolioProps) => {
-  // Función traductora interna basada en la prop 'lenguaje'
-  const t = (key: string) => {
-    const staticTexts: Record<string, Record<string, string>> = {
-      es: { title: "Portafolio", date: "Fecha", version: "Versión" },
-      en: { title: "Portfolio", date: "Date", version: "Version" },
-    };
+  const t = locales[lenguaje] || locales.es;
+  const portafolio = getPortafolioProjects(lenguaje);
 
-    if (staticTexts[lenguaje]?.[key]) {
-      return staticTexts[lenguaje][key];
-    }
-
-    const parts = key.split(".");
-    return parts[parts.length - 1];
-  };
-
-  const portafolio = getPortafolioProjects(t);
   const [open, setOpen] = useState(false);
   const [galeria, setGaleria] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -102,7 +82,7 @@ export const Portafolio = ({
     <section className="pf-section" id={sectionId}>
       {cssHref && <link rel="stylesheet" href={cssHref} />}
       <div className="pf-container">
-        <h1 className="pf-title">{t("title")}</h1>
+        <h1 className="pf-title">{t.title}</h1>
 
         <div className="pf-list">
           {Object.entries(portafolio)
@@ -113,7 +93,11 @@ export const Portafolio = ({
                 <div className="pf-item-text">
                   <h2 className="pf-item-title">
                     {item.titulo}
-                    <a href={item.url} target="_blank" className="pf-item-link">
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      className="pf-item-link"
+                      rel="noreferrer">
                       <FontAwesomeIcon
                         icon={faArrowUpRightFromSquare}
                         size="lg"
@@ -129,7 +113,10 @@ export const Portafolio = ({
                   {item.demo && (
                     <div className="pf-item-demo">
                       {item.demo.url && (
-                        <a href={item.demo.url} target="_blank">
+                        <a
+                          href={item.demo.url}
+                          target="_blank"
+                          rel="noreferrer">
                           {item.demo.url}
                         </a>
                       )}
@@ -141,11 +128,11 @@ export const Portafolio = ({
                     </div>
                   )}
                   <p className="pf-item-meta pf-item-meta--first">
-                    <span className="pf-item-meta-label">{t("date")}:</span>{" "}
+                    <span className="pf-item-meta-label">{t.date}:</span>{" "}
                     <span>{item.fechaIgnaguracion}</span>
                   </p>
                   <p className="pf-item-meta">
-                    <span className="pf-item-meta-label">{t("version")}:</span>{" "}
+                    <span className="pf-item-meta-label">{t.version}:</span>{" "}
                     {item.version}
                   </p>
                 </div>

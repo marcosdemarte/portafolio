@@ -1,0 +1,94 @@
+{
+  "es": {
+    "title": "Portafolio",
+    "date": "Fecha",
+    "version": "Versión",
+    "projects": {
+      "umbra": {
+        "title": "Umbra",
+        "description": "Desarrollamos la producción audiovisual de Umbra, una pieza creada para un festival de cine que destaca por su complejidad técnica."
+      },
+      "animacion3d": {
+        "title": "Animación 3D",
+        "description": "Proyectos de renderizado y animación 3D desarrollados para diversas presentaciones visuales."
+      },
+      "tiendabrando": {
+        "title": "Tienda Brando",
+        "description": "Desarrollamos una tienda virtual para el rubro de la construcción con catálogo de productos, carrito de compras y panel de administración."
+      },
+      "powerbit": {
+        "title": "Power Bit",
+        "description": "Lanzamos Powerbit, una agencia de soluciones digitales dedicada al diseño web, publicidad y marketing estratégico."
+      },
+      "elcazadorgym": {
+        "title": "El Cazador GYM",
+        "subtitle": "Datos para el ingreso",
+        "dni": "DNI",
+        "password": "Contraseña",
+        "description": "Plataforma web de seguimiento físico para los clientes del gimnasio con gráficos interactivos y registro de medidas."
+      },
+      "marcosbrandolinportafolio": {
+        "title": "Marcos Brandolin Portafolio",
+        "description": "Portfolio personal para mostrar el progreso profesional, currículum vitae y proyectos recientes."
+      },
+      "juegounirverso": {
+        "title": "Juego Jurásico",
+        "description": "Inspirados en el juego del dinosaurio de Chrome, reformulamos esa experiencia con un diseño fresco y divertido."
+      },
+      "bicicletaselectricas": {
+        "title": "Bicicletas Eléctricas",
+        "description": "Tienda online especializada en movilidad urbana (bicicletas eléctricas, monopatines y accesorios) con pasarela de pagos integrada."
+      },
+      "picnic": {
+        "title": "Pic Nic",
+        "description": "Producción integral de reels y contenido audiovisual para redes sociales orientado a gastronomía."
+      }
+    }
+  },
+  "en": {
+    "title": "Portfolio",
+    "date": "Date",
+    "version": "Version",
+    "projects": {
+      "umbra": {
+        "title": "Umbra",
+        "description": "Audiovisual production for Umbra, a film festival short film featuring complex solar eclipse visual effects."
+      },
+      "animacion3d": {
+        "title": "3D Animation",
+        "description": "3D rendering and animation projects developed for high-impact visual presentations."
+      },
+      "tiendabrando": {
+        "title": "Tienda Brando",
+        "description": "Custom e-commerce platform for the construction industry with catalog, shopping cart, and admin dashboard."
+      },
+      "powerbit": {
+        "title": "Power Bit",
+        "description": "Digital agency platform offering web design, custom software development, automated systems, and digital marketing."
+      },
+      "elcazadorgym": {
+        "title": "El Cazador GYM",
+        "subtitle": "Access credentials",
+        "dni": "DNI",
+        "password": "Password",
+        "description": "Web app for gym members to track physical progress with interactive charts and automated WhatsApp reminders."
+      },
+      "marcosbrandolinportafolio": {
+        "title": "Marcos Brandolin Portfolio",
+        "description": "Personal developer portfolio built with Next.js featuring projects, tech stack, and experience."
+      },
+      "juegounirverso": {
+        "title": "Jurassic Game",
+        "description": "A fresh, interactive browser game inspired by the classic Chrome runner with custom visuals and mechanics."
+      },
+      "bicicletaselectricas": {
+        "title": "Electric Bicycles",
+        "description": "E-commerce store specialized in urban electric mobility, integrated with MercadoPago and social media ad campaigns."
+      },
+      "picnic": {
+        "title": "Pic Nic",
+        "description": "Full video content production and social media marketing campaign for a local restaurant."
+      }
+    }
+  }
+}

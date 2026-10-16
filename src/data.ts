@@ -1,4 +1,7 @@
-export type PortafolioTranslate = (key: string) => string;
+// src/data.ts
+import locales from "./locales.json";
+
+export type Idioma = "es" | "en";
 
 export interface PortafolioItem {
   titulo: string;
@@ -18,20 +21,14 @@ export interface PortafolioItem {
   version: string;
 }
 
-/**
- * Datos de los proyectos del portafolio. Los textos (titulo/descripcion) se
- * resuelven via `t`, que debe apuntar al namespace de i18n que expone las
- * claves `title`, `date`, `version` y `projects.<key>.title` / `.description`
- * (ver README para el shape completo esperado).
- */
-export function getPortafolioProjects(
-  t: PortafolioTranslate,
-): Record<string, PortafolioItem> {
+export function getPortafolioProjects(lang: Idioma = "es"): Record<string, PortafolioItem> {
+  const t = locales[lang] || locales.es;
+
   return {
     "1": {
-      titulo: t("projects.umbra.title"),
+      titulo: t.projects.umbra.title,
       url: "https://youtu.be/_T65x-3Bv38",
-      descripcion: t("projects.bicicletaselectricas.description"),
+      descripcion: t.projects.umbra.description,
       imagenes: {
         carpeta: "umbra",
         portada: "umbra1.jpg",
@@ -42,9 +39,9 @@ export function getPortafolioProjects(
       version: "1.0",
     },
     "2": {
-      titulo: t("projects.animacion3d.title"),
+      titulo: t.projects.animacion3d.title,
       url: "https://www.bicicletaselectricas.com.ar/",
-      descripcion: t("projects.bicicletaselectricas.description"),
+      descripcion: t.projects.animacion3d.description,
       imagenes: {
         carpeta: "bicicletaselectricas",
         portada: "bicicletaselectricas2.jpg",
@@ -54,9 +51,9 @@ export function getPortafolioProjects(
       version: "1.0",
     },
     "3": {
-      titulo: t("projects.tiendabrando.title"),
+      titulo: t.projects.tiendabrando.title,
       url: "https://www.tiendabrando.com.ar/",
-      descripcion: t("projects.tiendabrando.description"),
+      descripcion: t.projects.tiendabrando.description,
       imagenes: {
         carpeta: "tiendabrando",
         portada: "tiendabrando4.jpg",
@@ -77,9 +74,9 @@ export function getPortafolioProjects(
       version: "2.01",
     },
     "4": {
-      titulo: t("projects.powerbit.title"),
+      titulo: t.projects.powerbit.title,
       url: "https://powerbit.com.ar/",
-      descripcion: t("projects.powerbit.description"),
+      descripcion: t.projects.powerbit.description,
       imagenes: {
         carpeta: "powerbit",
         portada: "powerbit1.jpg",
@@ -96,12 +93,12 @@ export function getPortafolioProjects(
       version: "2.3",
     },
     "5": {
-      titulo: t("projects.elcazadorgym.title"),
+      titulo: t.projects.elcazadorgym.title,
       url: "https://www.elcazadorgym.com.ar/fitnesscontrol/",
       demo: {
-        descripcion: `<p class="pf-bold">${t("projects.elcazadorgym.subtitle")}:</p><div class="pf-leading-tight">${t("projects.elcazadorgym.dni")}: 11222333 <br> ${t("projects.elcazadorgym.password")}: at4sk6</div>`,
+        descripcion: `<p class="pf-bold">${t.projects.elcazadorgym.subtitle}:</p><div class="pf-leading-tight">${t.projects.elcazadorgym.dni}: 11222333 <br> ${t.projects.elcazadorgym.password}: at4sk6</div>`,
       },
-      descripcion: t("projects.elcazadorgym.description"),
+      descripcion: t.projects.elcazadorgym.description,
       imagenes: {
         carpeta: "elcazadorgym",
         portada: "elcazadorgym1.jpg",
@@ -118,9 +115,9 @@ export function getPortafolioProjects(
       version: "1.14",
     },
     "6": {
-      titulo: t("projects.marcosbrandolinportafolio.title"),
+      titulo: t.projects.marcosbrandolinportafolio.title,
       url: "https://marcosbrandolin.vercel.app/",
-      descripcion: t("projects.marcosbrandolinportafolio.description"),
+      descripcion: t.projects.marcosbrandolinportafolio.description,
       imagenes: {
         carpeta: "marcos-brandolin-portafolio",
         portada: "marcosbrandolin-portafolio.jpg",
@@ -130,9 +127,9 @@ export function getPortafolioProjects(
       version: "1.1",
     },
     "7": {
-      titulo: t("projects.juegounirverso.title"),
+      titulo: t.projects.juegounirverso.title,
       url: "https://juego-jurasico.vercel.app/",
-      descripcion: t("projects.juegounirverso.description"),
+      descripcion: t.projects.juegounirverso.description,
       imagenes: {
         carpeta: "juego-jurasico",
         portada: "juego-jurasico1.jpg",
@@ -142,9 +139,9 @@ export function getPortafolioProjects(
       version: "1.2",
     },
     "8": {
-      titulo: t("projects.bicicletaselectricas.title"),
+      titulo: t.projects.bicicletaselectricas.title,
       url: "https://www.bicicletaselectricas.com.ar/",
-      descripcion: t("projects.bicicletaselectricas.description"),
+      descripcion: t.projects.bicicletaselectricas.description,
       imagenes: {
         carpeta: "bicicletaselectricas",
         portada: "bicicletaselectricas2.jpg",
@@ -162,9 +159,9 @@ export function getPortafolioProjects(
       version: "1.0",
     },
     "9": {
-      titulo: t("projects.picnic.title"),
+      titulo: t.projects.picnic.title,
       url: "https://www.instagram.com/reel/DWB8mOMEfYT/",
-      descripcion: t("projects.picnic.description"),
+      descripcion: t.projects.picnic.description,
       imagenes: {
         carpeta: "picnic",
         portada: "picnic.jpg",
