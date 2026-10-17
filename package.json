@@ -8,6 +8,7 @@
     "src",
     "css",
     "images",
+    "scripts",
     "README.md"
   ],
   "exports": {
