@@ -31,10 +31,10 @@ export const Portafolio = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [esVideo, setesVideo] = useState<string>("image");
 
-  // Construye la ruta directa de la imagen basada en los datos de data.ts
+  // Construye la ruta apuntando a public/imagenes/portafolio
   const getImageUrl = (carpeta: string, archivo: string) => {
     if (!carpeta || !archivo) return "";
-    return `/images/${carpeta}/${archivo}`;
+    return `/imagenes/portafolio/${carpeta}/${archivo}`;
   };
 
   // Formateo exacto de fecha: es -> DD/MM/YYYY | en -> MM/DD/YYYY
