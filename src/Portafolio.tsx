@@ -78,24 +78,17 @@ export const Portafolio = ({
     setOpen(true);
   };
 
-  // Función para formatear la fecha según el idioma
+  // Función para formatear la fecha según el idioma (es: DD/MM/YYYY | en: MM/DD/YYYY)
   const formatearFecha = (fechaStr: string, lang: Idioma) => {
     if (!fechaStr) return "";
     const [dia, mes, anio] = fechaStr.split("/");
 
     if (lang === "en") {
-      // Convierte "26/03/2026" a un formato en inglés más natural (ej. "March 26, 2026")
-      const fechaObj = new Date(Number(anio), Number(mes) - 1, Number(dia));
-      if (!isNaN(fechaObj.getTime())) {
-        return fechaObj.toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        });
-      }
+      // Convierte de "18/03/2026" a "03/18/2026"
+      return `${mes}/${dia}/${anio}`;
     }
 
-    // Si es español o falla el parseo, devuelve el formato original "DD/MM/YYYY"
+    // Si es español, devuelve el formato original "18/03/2026"
     return fechaStr;
   };
 
