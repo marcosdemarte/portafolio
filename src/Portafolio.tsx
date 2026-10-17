@@ -7,7 +7,6 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { getPortafolioProjects, Idioma } from "./data";
-import { getPortafolioImageSrc } from "./images";
 import locales from "./locales.json";
 
 export interface PortafolioProps {
@@ -31,6 +30,22 @@ export const Portafolio = ({
   const [galeria, setGaleria] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [esVideo, setesVideo] = useState<string>("image");
+
+  // Construye la ruta directa de la imagen basada en los datos de data.ts
+  const getImageUrl = (carpeta: string, archivo: string) => {
+    if (!carpeta || !archivo) return "";
+    return `/images/${carpeta}/${archivo}`;
+  };
+
+  // Formateo exacto de fecha: es -> DD/MM/YYYY | en -> MM/DD/YYYY
+  const formatearFecha = (fechaStr: string, lang: Idioma) => {
+    if (!fechaStr) return "";
+    const [dia, mes, anio] = fechaStr.split("/");
+    if (lang === "en") {
+      return `${mes}/${dia}/${anio}`;
+    }
+    return fechaStr;
+  };
 
   function getYouTubeId(url: string) {
     const regExp =
@@ -60,7 +75,7 @@ export const Portafolio = ({
     const item = portafolio[key];
 
     const imagenesMapped = item.imagenes.galeria.map((imagen: string) => ({
-      src: getPortafolioImageSrc(item.imagenes.carpeta, imagen),
+      src: getImageUrl(item.imagenes.carpeta, imagen),
       type: "image" as const,
     }));
 
@@ -76,20 +91,6 @@ export const Portafolio = ({
     setGaleria(combinados);
     setCurrentIndex(0);
     setOpen(true);
-  };
-
-  // Función para formatear la fecha según el idioma (es: DD/MM/YYYY | en: MM/DD/YYYY)
-  const formatearFecha = (fechaStr: string, lang: Idioma) => {
-    if (!fechaStr) return "";
-    const [dia, mes, anio] = fechaStr.split("/");
-
-    if (lang === "en") {
-      // Convierte de "18/03/2026" a "03/18/2026"
-      return `${mes}/${dia}/${anio}`;
-    }
-
-    // Si es español, devuelve el formato original "18/03/2026"
-    return fechaStr;
   };
 
   return (
@@ -154,7 +155,7 @@ export const Portafolio = ({
                 </div>
                 <div className="pf-item-media">
                   <img
-                    src={getPortafolioImageSrc(
+                    src={getImageUrl(
                       item.imagenes.carpeta,
                       item.imagenes.portada,
                     )}
