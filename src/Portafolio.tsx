@@ -78,6 +78,27 @@ export const Portafolio = ({
     setOpen(true);
   };
 
+  // Función para formatear la fecha según el idioma
+  const formatearFecha = (fechaStr: string, lang: Idioma) => {
+    if (!fechaStr) return "";
+    const [dia, mes, anio] = fechaStr.split("/");
+
+    if (lang === "en") {
+      // Convierte "26/03/2026" a un formato en inglés más natural (ej. "March 26, 2026")
+      const fechaObj = new Date(Number(anio), Number(mes) - 1, Number(dia));
+      if (!isNaN(fechaObj.getTime())) {
+        return fechaObj.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+      }
+    }
+
+    // Si es español o falla el parseo, devuelve el formato original "DD/MM/YYYY"
+    return fechaStr;
+  };
+
   return (
     <section className="pf-section" id={sectionId}>
       {cssHref && <link rel="stylesheet" href={cssHref} />}
@@ -129,7 +150,9 @@ export const Portafolio = ({
                   )}
                   <p className="pf-item-meta pf-item-meta--first">
                     <span className="pf-item-meta-label">{t.date}:</span>{" "}
-                    <span>{item.fechaIgnaguracion}</span>
+                    <span>
+                      {formatearFecha(item.fechaIgnaguracion, lenguaje)}
+                    </span>
                   </p>
                   <p className="pf-item-meta">
                     <span className="pf-item-meta-label">{t.version}:</span>{" "}
