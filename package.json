@@ -6,14 +6,12 @@
   "types": "src/index.ts",
   "files": [
     "src",
-    "css",
     "images",
     "scripts",
     "README.md"
   ],
   "exports": {
-    ".": "./src/index.ts",
-    "./css/*": "./css/*"
+    ".": "./src/index.ts"
   },
   "scripts": {
     "postinstall": "node scripts/copy-images.js"

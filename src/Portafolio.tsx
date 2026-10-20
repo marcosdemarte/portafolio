@@ -9,18 +9,243 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getPortafolioProjects, Idioma } from "./data";
 import locales from "./locales.json";
 
+/**
+ * CSS del componente, incluido en el propio paquete (CSS puro, sin Tailwind
+ * ni archivos externos). Todas las clases usan el prefijo `pf-` para no
+ * chocar con las del proyecto que lo instala. Tema oscuro via `.dark`.
+ */
+const portafolioCss = `
+  .pf-container {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2.25rem;
+  }
+
+  .pf-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pf-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    padding: 4rem 0;
+    text-align: center;
+    border-bottom: 1px solid #a0a0a0;
+  }
+
+  .dark .pf-item {
+    border-bottom-color: #27272a;
+  }
+
+  .pf-item:first-child {
+    padding-top: 0;
+  }
+
+  .pf-item:last-child {
+    border-bottom: none;
+  }
+
+  .pf-item-text {
+    order: 2;
+  }
+
+  .pf-item-media {
+    order: 1;
+  }
+
+  @media (min-width: 1024px) {
+    .pf-item {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      padding: 5rem;
+    }
+    .pf-item-text {
+      grid-column: span 6 / span 6;
+      order: 1;
+    }
+    .pf-item-media {
+      grid-column: span 6 / span 6;
+      order: 2;
+    }
+  }
+
+  .pf-item-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    color: #111827;
+  }
+
+  .dark .pf-item-title {
+    color: #fff;
+  }
+
+  @media (min-width: 1024px) {
+    .pf-item-title {
+      font-size: 1.875rem;
+    }
+  }
+
+  .pf-item-link {
+    position: relative;
+    top: -4px;
+    font-size: 1rem;
+    color: #274dd8;
+    text-decoration-color: #274dd8;
+  }
+
+  .pf-item-link:hover {
+    color: #1a35a0;
+    text-decoration-color: #1a35a0;
+  }
+
+  .dark .pf-item-link {
+    color: #6d8bf5;
+    text-decoration-color: #6d8bf5;
+  }
+
+  .dark .pf-item-link:hover {
+    color: #98aef8;
+    text-decoration-color: #98aef8;
+  }
+
+  .pf-item-link-icon {
+    margin-left: 0.25rem;
+    font-size: 0.875rem;
+  }
+
+  .pf-item-description {
+    padding-top: 0.25rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .pf-item-demo {
+    font-size: 0.875rem;
+    padding-top: 0.5rem;
+  }
+
+  .pf-item-meta {
+    margin: 0;
+  }
+
+  .pf-item-meta--first {
+    padding-top: 0.5rem;
+  }
+
+  .pf-item-meta-label {
+    font-weight: 700;
+    display: block;
+    color: #111827;
+  }
+
+  .dark .pf-item-meta-label {
+    color: #fff;
+  }
+
+  @media (min-width: 768px) {
+    .pf-item-meta-label {
+      display: inline;
+    }
+  }
+
+  .pf-item-image {
+    display: block;
+    width: 100%;
+    object-fit: contain;
+    cursor: pointer;
+  }
+
+  .pf-bold {
+    font-weight: 700;
+  }
+
+  .pf-leading-tight {
+    line-height: 1.25;
+  }
+
+  /* Lightbox */
+
+  .pf-lightbox-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .pf-lightbox-slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pf-lightbox-video {
+    background: #000;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pf-lightbox-video-placeholder {
+    background: #000;
+    width: 100%;
+    height: 100%;
+  }
+
+  .pf-lightbox-video-frame {
+    width: 100%;
+    height: 100%;
+  }
+
+  .pf-lightbox-counter {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: auto;
+    transform: none;
+    z-index: 99999;
+    color: #fff;
+    font-size: 16px;
+  }
+
+  .pf-lightbox-counter--video {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .pf-lightbox-close {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    left: auto;
+    transform: none;
+    z-index: 99999;
+  }
+
+  .pf-lightbox-close--video {
+    top: 10px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+`;
+
 export interface PortafolioProps {
   /** Idioma del portafolio: "es" | "en". Default: "es" */
   lenguaje?: Idioma;
   cssHref?: string;
-  sectionId?: string;
   excludeKeys?: string[];
 }
 
 export const Portafolio = ({
   lenguaje = "es",
   cssHref,
-  sectionId = "portafolio",
   excludeKeys = ["2"],
 }: PortafolioProps) => {
   const t = locales[lenguaje] || locales.es;
@@ -94,11 +319,10 @@ export const Portafolio = ({
   };
 
   return (
-    <section className="pf-section" id={sectionId}>
+    <>
+      <style dangerouslySetInnerHTML={{ __html: portafolioCss }} />
       {cssHref && <link rel="stylesheet" href={cssHref} />}
       <div className="pf-container">
-        <h1 className="pf-title">{t.title}</h1>
-
         <div className="pf-list">
           {Object.entries(portafolio)
             .reverse()
@@ -253,6 +477,6 @@ export const Portafolio = ({
         }}
         plugins={[]}
       />
-    </section>
+    </>
   );
 };
