@@ -19,7 +19,6 @@ const portafolioCss = `
     max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
-    padding: 2.25rem;
   }
 
   .pf-list {
