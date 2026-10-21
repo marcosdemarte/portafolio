@@ -112,7 +112,7 @@ const portafolioCss = `
 
   .pf-item-link-icon {
     margin-left: 0.25rem;
-    font-size:1.4rem;
+    font-size: 1.4rem;
   }
 
   .pf-item-description {
@@ -330,7 +330,7 @@ export const Portafolio = ({
               <div key={key} className="pf-item">
                 <div className="pf-item-text">
                   <h2 className="pf-item-title">
-                    {item.titulo}
+                    {item.titulo}{" "}
                     <a
                       href={item.url}
                       target="_blank"
@@ -475,15 +475,3 @@ export const Portafolio = ({
     </>
   );
 };
-
-{
-  /*
-  
-  
-            <p className="pf-item-meta">
-                    <span className="pf-item-meta-label">{t.version}:</span>{" "}
-                    {item.version}
-                  </p>
-                  
-                  */
-}
