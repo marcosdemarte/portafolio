@@ -112,7 +112,7 @@ const portafolioCss = `
 
   .pf-item-link-icon {
     margin-left: 0.25rem;
-    font-size: 0.875rem;
+    font-size:1.4rem;
   }
 
   .pf-item-description {
@@ -371,10 +371,6 @@ export const Portafolio = ({
                       {formatearFecha(item.fechaIgnaguracion, lenguaje)}
                     </span>
                   </p>
-                  <p className="pf-item-meta">
-                    <span className="pf-item-meta-label">{t.version}:</span>{" "}
-                    {item.version}
-                  </p>
                 </div>
                 <div className="pf-item-media">
                   <img
@@ -479,3 +475,15 @@ export const Portafolio = ({
     </>
   );
 };
+
+{
+  /*
+  
+  
+            <p className="pf-item-meta">
+                    <span className="pf-item-meta-label">{t.version}:</span>{" "}
+                    {item.version}
+                  </p>
+                  
+                  */
+}
