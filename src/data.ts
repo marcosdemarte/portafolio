@@ -96,7 +96,7 @@ export function getPortafolioProjects(lang: Idioma = "es"): Record<string, Porta
       titulo: t.projects.elcazadorgym.title,
       url: "https://www.elcazadorgym.com.ar/fitnesscontrol/",
       demo: {
-        descripcion: `<p class="pf-bold">${t.projects.elcazadorgym.subtitle}:</p><div class="pf-leading-tight">${t.projects.elcazadorgym.dni}: 11222333 <br> ${t.projects.elcazadorgym.password}: at4sk6</div>`,
+        descripcion: `<div class="pf-bold">${t.projects.elcazadorgym.subtitle}:</div><div class="pf-leading-tight">${t.projects.elcazadorgym.dni}: 11222333</div><div>${t.projects.elcazadorgym.password}: at4sk6</div>`,
       },
       descripcion: t.projects.elcazadorgym.description,
       imagenes: {
