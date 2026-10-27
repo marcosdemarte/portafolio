@@ -346,7 +346,7 @@ export const Portafolio = ({
                   />
 
                   {item.demo && (
-                    <div className="pf-item-demo">
+                    <div className="pf-item-description">
                       {item.demo.url && (
                         <a
                           href={item.demo.url}
