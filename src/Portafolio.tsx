@@ -120,10 +120,7 @@ const portafolioCss = `
     padding-bottom: 0.5rem;
   }
 
-  .pf-item-demo {
-    font-size: 0.875rem;
-    padding-top: 0.5rem;
-  }
+ 
 
   .pf-item-meta {
     margin: 0;
@@ -475,3 +472,11 @@ export const Portafolio = ({
     </>
   );
 };
+{
+  /*
+   .pf-item-demo {
+    font-size: 0.875rem;
+    padding-top: 0.5rem;
+  }
+  */
+}
