@@ -245,7 +245,7 @@ export interface PortafolioProps {
 export const Portafolio = ({
   lenguaje = "es",
   cssHref,
-  excludeKeys = ["2"],
+  excludeKeys = ["1", "2"],
 }: PortafolioProps) => {
   const t = locales[lenguaje] || locales.es;
   const portafolio = getPortafolioProjects(lenguaje);

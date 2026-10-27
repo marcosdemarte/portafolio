@@ -13,35 +13,35 @@
         "description": "Proyectos de renderizado y animación 3D desarrollados para diversas presentaciones visuales."
       },
       "tiendabrando": {
-        "title": "Tienda Brando",
-        "description": "Desarrollamos una tienda virtual para el rubro de la construcción con catálogo de productos, carrito de compras y panel de administración."
+        "title": "Tienda online",
+        "description": "Lancé “Tienda Brando”, un catálogo de materiales para la construcción y el equipamiento del hogar, donde se pueden comprar productos como cerámicos, porcelanatos, vanitorys y griferías, entre otros.<br/><br/>Incluye un sistema autogestionable de acceso exclusivo para el negocio mediante credenciales, desde el cual se pueden dar de alta, modificar o eliminar productos, permitiendo actualizar precios o cargar imágenes de forma autónoma."
       },
       "powerbit": {
-        "title": "Power Bit",
-        "description": "Lanzamos Powerbit, una agencia de soluciones digitales dedicada al diseño web, publicidad y marketing estratégico."
+        "title": "Sitio web",
+        "description": "Fundé “Power Bits”, una agencia de soluciones digitales y publicitarias que ofrece servicios a negocios para promocionar sus productos y servicios, atraer clientes potenciales e impulsar sus ventas.<br/><br/>Entre los principales servicios se encuentran el diseño web, las tiendas online, la creación de contenido audiovisual y las campañas publicitarias, entre otros.<br/><br/>Además, busco integrar la inteligencia artificial en los proyectos para mejorar la calidad y aumentar la productividad."
       },
       "elcazadorgym": {
-        "title": "El Cazador GYM",
-        "subtitle": "Datos para el ingreso",
+        "title": "Aplicación web",
+        "subtitle": "Credencial de demostración",
         "dni": "DNI",
         "password": "Contraseña",
-        "description": "Plataforma web de seguimiento físico para los clientes del gimnasio con gráficos interactivos y registro de medidas."
+        "description": "Construí una aplicación web de seguimiento físico para el gimnasio “El Cazador GYM”, diseñada principalmente para utilizarse desde móviles.<br/><br/>Permite registrar medidas corporales mediante un formulario y visualizar un avatar del usuario. Este seguimiento ayuda a apreciar mejor la evolución física, reforzando el hábito y el compromiso con el entrenamiento.<br/><br/>Cuenta con un ingreso mediante credenciales, exclusivo para los usuarios del gimnasio."
       },
       "marcosbrandolinportafolio": {
-        "title": "Marcos Brandolin Portafolio",
-        "description": "Portfolio personal para mostrar el progreso profesional, currículum vitae y proyectos recientes."
+        "title": "Sitio web personal",
+        "description": "Publiqué mi portafolio profesional para presentar mi perfil como desarrollador web, destacando mis habilidades, experiencia y proyectos recientes.<br/><br/>El contenido está orientado a profesionales de recursos humanos, empresas y corporaciones interesadas en conocer mi trabajo y descargar mi currículum vitae."
       },
       "juegounirverso": {
-        "title": "Juego Jurásico",
-        "description": "Inspirados en el juego del dinosaurio de Chrome, reformulamos esa experiencia con un diseño fresco y divertido."
+        "title": "Videojuego",
+        "description": "Dicté un curso de desarrollo de videojuegos. Para poner en práctica las herramientas y evaluar los conocimientos adquiridos durante la cursada, se recreó el famoso juego del dinosaurio de Google Chrome, que aparece cuando no hay conexión a internet.<br/><br/>¿Te animás a jugarlo?<br/>Probá tus reflejos y descubrí hasta dónde podés llegar."
       },
       "bicicletaselectricas": {
-        "title": "Bicicletas Eléctricas",
-        "description": "Se lanzó una tienda online especializada en movilidad urbana, con un catálogo de bicicletas eléctricas, bicicletas tradicionales, monopatines y accesorios.<br/><br/>La tienda permite pagar a través de Mercado Pago, con tarjetas de crédito y débito, en cuotas o en efectivo, según las opciones disponibles. Además, se puede acceder desde cualquier dispositivo, ya sea un teléfono móvil, una tablet o una computadora.<br/><br/>Para potenciar las ventas del negocio, se puso en marcha una campaña publicitaria en redes sociales, dirigida a un público específico interesado en estos productos y que busca opciones para comprarlos por internet."
+        "title": "Tienda online",
+        "description": "Desarrollé un catálogo de productos de movilidad urbana que incluye bicicletas eléctricas, bicicletas tradicionales, monopatines y accesorios.<br/><br/>Las compras pueden realizarse a través de Mercado Pago con tarjetas de crédito y débito, en cuotas o en efectivo, según las opciones disponibles. Además, el sitio web funciona en cualquier dispositivo, ya sea un teléfono móvil, una tablet o una computadora.<br/><br/>Para potenciar las ventas del negocio, lancé una campaña publicitaria en redes sociales dirigida a un público específico interesado en estos productos."
       },
       "picnic": {
-        "title": "Pic Nic",
-        "description": "Producción integral de reels y contenido audiovisual para redes sociales orientado a gastronomía."
+        "title": "Video publicitario",
+        "description": "Creé contenido para atraer clientes para la casa de comidas “Pic Nic”, realizando todo el proceso de producción y publicidad.<br/><br/>La campaña publicitaria alcanzó una gran cantidad de visualizaciones, superando las expectativas y generando una excelente interacción con el público. Esto contribuyó a fortalecer la presencia digital del negocio y aumentar su comunidad de seguidores."
       }
     }
   },
