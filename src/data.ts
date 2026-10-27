@@ -75,7 +75,7 @@ export function getPortafolioProjects(lang: Idioma = "es"): Record<string, Porta
     },
     "4": {
       titulo: t.projects.powerbit.title,
-      url: "https://powerbit.com.ar/",
+      url: "https://wwww.powerbits.net/",
       descripcion: t.projects.powerbit.description,
       imagenes: {
         carpeta: "powerbit",

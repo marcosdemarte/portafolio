@@ -355,6 +355,7 @@ export const Portafolio = ({
                           {item.demo.url}
                         </a>
                       )}
+                      <br />
                       <div
                         dangerouslySetInnerHTML={{
                           __html: item.demo.descripcion,
