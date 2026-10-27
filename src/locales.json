@@ -25,7 +25,7 @@
         "subtitle": "Credencial de demostración",
         "dni": "DNI",
         "password": "Contraseña",
-        "description": "Construí una aplicación web de seguimiento físico para el gimnasio “El Cazador GYM”, diseñada principalmente para utilizarse desde móviles.<br/><br/>Permite registrar medidas corporales mediante un formulario y visualizar un avatar del usuario. Este seguimiento ayuda a apreciar mejor la evolución física, reforzando el hábito y el compromiso con el entrenamiento.<br/><br/>Cuenta con un ingreso mediante credenciales, exclusivo para los usuarios del gimnasio."
+        "description": "Construí una aplicación web de seguimiento físico para el gimnasio “El Cazador GYM”, diseñada principalmente para utilizarse desde móviles.<br/><br/>Permite registrar medidas corporales mediante un formulario y visualizar un avatar del usuario. Este seguimiento ayuda a apreciar mejor la evolución física, reforzando el compromiso con el entrenamiento.<br/><br/>Cuenta con un ingreso mediante credenciales, exclusivo para los usuarios del gimnasio."
       },
       "marcosbrandolinportafolio": {
         "title": "Sitio web personal",
